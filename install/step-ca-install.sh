@@ -20,6 +20,9 @@ update_os
 #  "debs" \
 #  "main"
 
+# Get:3 https://pkgs.infra.smallstep.com/stable/debian debs InRelease [2,226 B]
+# Get:5 https://pkgs.infra.smallstep.com/stable/debian debs/main amd64 Packages [99.1 kB]
+
 curl -fsSL https://packages.smallstep.com/keys/apt/repo-signing-key.gpg -o /etc/apt/keyrings/smallstep.asc
 cat << EOF > /etc/apt/sources.list.d/smallstep.sources
 Types: deb
