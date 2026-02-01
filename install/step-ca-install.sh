@@ -13,12 +13,21 @@ setting_up_container
 network_check
 update_os
 
-setup_deb822_repo \
-  "step-ca" \
-  "https://packages.smallstep.com/keys/apt/repo-signing-key.gpg" \
-  "https://packages.smallstep.com/stable/debian" \
-  "debs" \
-  "main"
+#setup_deb822_repo \
+#  "smallstep" \
+#  "https://packages.smallstep.com/keys/apt/repo-signing-key.gpg" \
+#  "https://packages.smallstep.com/stable/debian" \
+#  "debs" \
+#  "main"
+
+curl -fsSL https://packages.smallstep.com/keys/apt/repo-signing-key.gpg -o /etc/apt/keyrings/smallstep.asc
+cat << EOF > /etc/apt/sources.list.d/smallstep.sources
+Types: deb
+URIs: https://packages.smallstep.com/stable/debian
+Suites: debs
+Components: main
+Signed-By: /etc/apt/keyrings/smallstep.asc
+EOF
 
 msg_info "Installing step-ca and step-cli"
 $STD apt install -y step-ca step-cli
